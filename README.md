@@ -4,10 +4,10 @@ Repurposes the **right half only** of an old [Urchin](https://github.com/duckyb/
 
 ## Keys
 
-| Physical (Colemak letter) | HID sent   | Notes                          |
-|---------------------------|------------|--------------------------------|
-| **L** (top row)           | `←` LEFT   | Previous page in most readers  |
-| **O** (home-row pinky)    | `→` RIGHT  | Next page                      |
+| Physical (Colemak letter) | HID sent   | Notes                                      |
+|---------------------------|------------|--------------------------------------------|
+| **N** (home row)          | `←` LEFT   | Same position as NAV LEFT on Temper/Piantor |
+| **O** (home-row pinky)    | `→` RIGHT  | Same position as NAV RIGHT                 |
 | Inner right thumb         | Soft off   | Deep power-off for storage     |
 | Outer right thumb         | BT clear   | Wipe host bonds (re-pair)      |
 
@@ -28,7 +28,7 @@ This config builds **`urchin_right` with `CONFIG_ZMK_SPLIT=n`**, so the right co
 3. Double-tap reset again when the board reboots into bootloader (or reset once more).
 4. Flash **`urchin_right_pageturner.uf2`**.
 5. On iOS/macOS: Settings → Bluetooth → pair **Urchin-Turn**.
-6. Open a PDF/ebook; press **L** / **O**.
+6. Open a PDF/ebook; press **N** / **O**.
 
 ## Build
 
