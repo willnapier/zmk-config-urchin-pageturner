@@ -1,0 +1,43 @@
+/*
+ * Urchin right-half Bluetooth page turner
+ *
+ * Only the right half is used (standalone BLE keyboard).
+ * Two active keys, Colemak letter positions on a full Urchin:
+ *
+ *   L (top row, right middle finger)  → LEFT arrow
+ *   O (home row, right pinky)         → RIGHT arrow
+ *
+ * Matches "direction arrows" for PDF / ebook apps (iOS Kindle,
+ * Preview, etc.). Expand later if volume keys or Page Up/Down
+ * turn out better for a specific reader.
+ *
+ * Full 34-key position map (left half is &none — never pressed):
+ *
+ *    0  1  2  3  4 |  5  6  7  8  9
+ *   10 11 12 13 14 | 15 16 17 18 19
+ *   20 21 22 23 24 | 25 26 27 28 29
+ *            30 31 | 32 33
+ *
+ * L = pos 6, O = pos 19.
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+//  left half (unused)                              right half
+    &none  &none  &none  &none  &none      &none  &kp LEFT  &none  &none  &none
+    &none  &none  &none  &none  &none      &none  &none     &none  &none  &kp RIGHT
+    &none  &none  &none  &none  &none      &none  &none     &none  &none  &none
+//              thumbs L                             thumbs R
+                  &none  &none                &soft_off  &bt BT_CLR
+            >;
+        };
+    };
+};

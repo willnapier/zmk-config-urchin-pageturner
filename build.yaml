@@ -1,0 +1,10 @@
+# GitHub Actions / local matrix for Urchin page turner
+---
+include:
+  # Right half only — standalone page turner
+  - board: nice_nano_v2
+    shield: urchin_right
+
+  # Clear bonds / settings before first use (or after re-pair pain)
+  - board: nice_nano_v2
+    shield: settings_reset

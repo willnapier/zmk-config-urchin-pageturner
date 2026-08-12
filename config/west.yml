@@ -1,0 +1,17 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: duckyb
+      url-base: https://github.com/duckyb
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      # Match Temper/Piantor pin; urchin-zmk-module targets v0.3.x
+      revision: v0.3
+      import: app/west.yml
+    - name: urchin-zmk-module
+      remote: duckyb
+      revision: main
+  self:
+    path: config
