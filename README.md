@@ -16,34 +16,33 @@ Combos are adjacent home-row pairs, **from rest only** (`require-prior-idle-ms` 
 
 A Mac is one bond. Kindle-on-Mac is the PAGE layer, not a fourth profile.
 
-After a reboot the BT bond is restored but the layer is 0 (iPhone arrows). Hit the host combo once.
+After a reboot the BT bond is restored and the layer is **Linux Handy** (N = F20 toggle on both computers). Kindle: hold outer thumb, or **N+E** for the iPhone layer. I+O still selects the Mac bond and Cmd+Z undo.
 
 ## Keys (Colemak positions on the right home row)
 
 Fit switches on **E** and **I** (between the original N and O). Thumbs stay, **no keycaps**.
 
-### iPhone (base)
+### Default (Linux Handy — boot layer)
+
+| Key | HID |
+|-----|-----|
+| **N** | F20 → `handy --toggle-transcription` (niri + Hammerspoon) |
+| **E** | F19 → `handy --cancel` |
+| **I** | Ctrl+Z (Mac: use **I+O** first so this becomes Cmd+Z) |
+| **O** | Enter |
+
+Totem `Mod+G` is unchanged. F13–F18 stay screenshot keys.
+
+### iPhone (N+E)
 
 | Key | HID |
 |-----|-----|
 | **N** | `LEFT` |
-| **E** | letter `e` (switch test; combos still consume N+E / E+I from rest) |
-| **I** | letter `i` (switch test; combos still consume E+I / I+O from rest) |
+| **E** | letter `e` |
+| **I** | letter `i` |
 | **O** | `RIGHT` |
-| **Outer thumb tap** | jump to Mac Handy layer **without** changing BLE profile |
 
-No hold required to read. Outer-thumb tap is the escape if E/I are dead: Kindle stays on this layer; tap the bare outer stem, then N is Handy. On Mac Handy, hold that same stem for arrows.
-
-### nimbini / Mac (base)
-
-| Key | nimbini | Mac |
-|-----|---------|-----|
-| **N** | Super+G → `handy --toggle-transcription` | Right-Cmd+G (Handy in-app; not Option+Space) |
-| **E** | F19 → `handy --cancel` (abort **before** paste) | F19 → Handy `--cancel` |
-| **I** | Ctrl+Z (undo paste) | Cmd+Z (undo paste) |
-| **O** | Enter | Enter |
-
-Niri: `Mod+G` toggle (unchanged), `F19` cancel. Mac: Hammerspoon `F19` → Handy `--cancel`. F13–F18 stay screenshot keys.
+Thumbs unbound. No hold required to read.
 
 ### Thumbs (computers only)
 
@@ -54,7 +53,7 @@ Niri: `Mod+G` toggle (unchanged), `F19` cancel. Mac: Hammerspoon `F19` → Handy
 
 Release returns to that host’s Handy base. Helix is momentary — no persistent mode.
 
-Toggle and cancel-before-paste `&trans` through HELIX, so they stay Super+G / Option+Space / F19.
+Toggle and cancel `&trans` through HELIX (F20 / F19).
 
 ## Why right-as-standalone works
 
