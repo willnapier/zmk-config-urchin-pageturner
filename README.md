@@ -1,19 +1,57 @@
-# Urchin right-half Bluetooth page turner
+# Urchin right-half: Kindle clicker + Handy remote
 
-Repurposes the **right half only** of an old [Urchin](https://github.com/duckyb/urchin) (34-key, nice!nano) as a standalone BLE remote for PDF / ebook page turning.
+Repurposes the **right half only** of an old [Urchin](https://github.com/duckyb/urchin) (34-key, nice!nano) as a standalone BLE remote. Three hosts, no display.
 
-## Keys
+BLE name: **`Urchin-Turn`**.
 
-| Physical (Colemak letter) | HID sent   | Notes                                      |
-|---------------------------|------------|--------------------------------------------|
-| **N** (home row)          | `←` LEFT   | Same position as NAV LEFT on Temper/Piantor |
-| **O** (home-row pinky)    | `→` RIGHT  | Same position as NAV RIGHT                 |
-| Inner right thumb         | Soft off   | Deep power-off for storage     |
-| Outer right thumb         | BT clear   | Wipe host bonds (re-pair)      |
+## Hosts
 
-All other switches are unbound.
+Combos are adjacent home-row pairs, **from rest only** (`require-prior-idle-ms` 1000, `timeout-ms` 50). Same combo always selects that host — not a toggle.
 
-BLE name: **`Urchin-Turn`** (avoids clashing with a full-keyboard "urchin" pair).
+| Combo | Profile | Machine | Base layer |
+|-------|---------|---------|------------|
+| **N+E** | 0 | iPhone | arrows on N/O |
+| **E+I** | 1 | nimbini | Linux Handy |
+| **I+O** | 2 | Mac | Mac Handy |
+
+A Mac is one bond. Kindle-on-Mac is the PAGE layer, not a fourth profile.
+
+After a reboot the BT bond is restored but the layer is 0 (iPhone arrows). Hit the host combo once.
+
+## Keys (Colemak positions on the right home row)
+
+Fit switches on **E** and **I** (between the original N and O). Thumbs stay, **no keycaps**.
+
+### iPhone (base)
+
+| Key | HID |
+|-----|-----|
+| **N** | `LEFT` |
+| **O** | `RIGHT` |
+
+E, I, and both thumbs unbound. No hold required to read.
+
+### nimbini / Mac (base)
+
+| Key | nimbini | Mac |
+|-----|---------|-----|
+| **N** | Super+G → `handy --toggle-transcription` | Option+Space (Handy in-app) |
+| **E** | F19 → `handy --cancel` (abort **before** paste) | F19 → Handy `--cancel` |
+| **I** | Ctrl+Z (undo paste) | Cmd+Z (undo paste) |
+| **O** | Enter | Enter |
+
+Niri: `Mod+G` toggle (unchanged), `F19` cancel. Mac: Hammerspoon `F19` → Handy `--cancel`. F13–F18 stay screenshot keys.
+
+### Thumbs (computers only)
+
+| Thumb | Hold | Layer |
+|-------|------|-------|
+| **Inner** | `&mo HELIX` | I = `Esc,u` (discard paste in Helix); O = `Esc, Space, p` (DayPage processor) |
+| **Outer** | `&mo PAGE` | N/O = arrows (Mac Kindle) |
+
+Release returns to that host’s Handy base. Helix is momentary — no persistent mode.
+
+Toggle and cancel-before-paste `&trans` through HELIX, so they stay Super+G / Option+Space / F19.
 
 ## Why right-as-standalone works
 
@@ -21,14 +59,17 @@ Stock Urchin sets **left = central**, **right = peripheral**. A peripheral canno
 
 This config builds **`urchin_right` with `CONFIG_ZMK_SPLIT=n`**, so the right controller is a normal BLE keyboard (correct right-half matrix, no left half required).
 
-## Flash (first time)
+## Flash
+
+If this board already runs the old two-key Kindle firmware, **`settings_reset.uf2` first** so the new 3-slot profile table is clean, then the page-turner UF2, then pair:
 
 1. Double-tap reset on the **right** nice!nano → `NICENANO` drive.
-2. Flash **`settings_reset.uf2`** once (clears old split/host bonds).
-3. Double-tap reset again when the board reboots into bootloader (or reset once more).
+2. Flash **`settings_reset.uf2`** once.
+3. Double-tap reset again.
 4. Flash **`urchin_right_pageturner.uf2`**.
-5. On iOS/macOS: Settings → Bluetooth → pair **Urchin-Turn**.
-6. Open a PDF/ebook; press **N** / **O**.
+5. Combo **N+E**, pair **Urchin-Turn** on the iPhone.
+6. Combo **E+I**, pair on nimbini.
+7. Combo **I+O**, pair on the Mac.
 
 ## Build
 
@@ -43,12 +84,4 @@ west zephyr-export
 west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=urchin_right -DZMK_CONFIG="$PWD/config"
 ```
 
-## Later tweaks
-
-If a reader ignores arrows (some iOS Kindle modes), try swapping to:
-
-- `PG_UP` / `PG_DN`
-- `C_VOL_UP` / `C_VOL_DN` (common for iOS page-turn accessories)
-- `UP` / `DOWN`
-
-Edit `config/urchin.keymap` and rebuild.
+Host binds and the Handy loop: `~/Assistants/shared/LOCAL-DICTATION.md`.

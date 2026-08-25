@@ -1,42 +1,157 @@
 /*
- * Urchin right-half Bluetooth page turner
+ * Urchin right-half: Kindle clicker + Handy remote
  *
- * Only the right half is used (standalone BLE keyboard).
- * Two active keys, Colemak letter positions on a full Urchin:
+ * Standalone BLE (CONFIG_ZMK_SPLIT=n). Right half only.
  *
- *   N (home row)  → LEFT arrow
- *   O (home row)  → RIGHT arrow
+ * Hosts (explicit combos, from rest — require-prior-idle 1000 ms):
+ *   N+E → iPhone  (profile 0, arrows)
+ *   E+I → nimbini (profile 1, Linux Handy)
+ *   I+O → Mac     (profile 2, Mac Handy)
  *
- * Same physical positions as LEFT/RIGHT on Temper/Piantor NAV
- * (home-row N E I O cluster: N=LEFT, O=RIGHT). Base layer only —
- * no hold layer required.
+ * Computer thumbs (no keycaps):
+ *   Inner  → momentary HELIX  (Esc u / Esc Space p)
+ *   Outer  → momentary PAGE   (LEFT/RIGHT for Mac Kindle)
  *
- * Full 34-key position map (left half is &none — never pressed):
+ * Home-row N E I O (positions 16–19):
+ *   Linux:  Super+G / F19 / Ctrl+Z / Enter
+ *   Mac:    Opt+Space / F19 / Cmd+Z / Enter
+ *   Helix:  (trans toggle) / (trans cancel) / Esc u / Esc Space p
  *
  *    0  1  2  3  4 |  5  6  7  8  9
  *   10 11 12 13 14 | 15 16 17 18 19
  *   20 21 22 23 24 | 25 26 27 28 29
  *            30 31 | 32 33
  *
- * N = pos 16, O = pos 19.
+ * N=16 E=17 I=18 O=19  inner thumb=32  outer thumb=33
  */
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define LYR_IPHONE 0
+#define LYR_LINUX  1
+#define LYR_MAC    2
+#define LYR_HELIX  3
+#define LYR_PAGE   4
+
 / {
+    macros {
+        host_iphone: host_iphone {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &bt BT_SEL 0>
+                , <&macro_tap &to LYR_IPHONE>;
+        };
+
+        host_nimbini: host_nimbini {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &bt BT_SEL 1>
+                , <&macro_tap &to LYR_LINUX>;
+        };
+
+        host_mac: host_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &bt BT_SEL 2>
+                , <&macro_tap &to LYR_MAC>;
+        };
+
+        hx_undo: hx_undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp ESC>
+                , <&macro_wait_time 40>
+                , <&macro_tap &kp U>;
+        };
+
+        hx_proc: hx_proc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp ESC>
+                , <&macro_wait_time 40>
+                , <&macro_tap &kp SPACE>
+                , <&macro_wait_time 40>
+                , <&macro_tap &kp P>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_iphone {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <1000>;
+            key-positions = <16 17>;
+            bindings = <&host_iphone>;
+        };
+
+        combo_nimbini {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <1000>;
+            key-positions = <17 18>;
+            bindings = <&host_nimbini>;
+        };
+
+        combo_mac {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <1000>;
+            key-positions = <18 19>;
+            bindings = <&host_mac>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        iphone_layer {
             bindings = <
-//  left half (unused)                              right half
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
     &none  &none  &none  &none  &none      &none  &kp LEFT  &none  &none  &kp RIGHT
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
-//              thumbs L                             thumbs R
-                  &none  &none                &soft_off  &bt BT_CLR
+                  &none  &none                &none  &none
+            >;
+        };
+
+        linux_layer {
+            bindings = <
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+    &none  &none  &none  &none  &none      &none  &kp LG(G)  &kp F19  &kp LC(Z)  &kp RET
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+                  &none  &none                &mo LYR_HELIX  &mo LYR_PAGE
+            >;
+        };
+
+        mac_layer {
+            bindings = <
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+    &none  &none  &none  &none  &none      &none  &kp LA(SPACE)  &kp F19  &kp LG(Z)  &kp RET
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+                  &none  &none                &mo LYR_HELIX  &mo LYR_PAGE
+            >;
+        };
+
+        helix_layer {
+            bindings = <
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+    &none  &none  &none  &none  &none      &none  &trans  &trans  &hx_undo  &hx_proc
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+                  &none  &none                &trans  &trans
+            >;
+        };
+
+        page_layer {
+            bindings = <
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+    &none  &none  &none  &none  &none      &none  &kp LEFT  &none  &none  &kp RIGHT
+    &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
+                  &none  &none                &trans  &trans
             >;
         };
     };
