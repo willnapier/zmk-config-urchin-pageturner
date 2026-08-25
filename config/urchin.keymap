@@ -118,7 +118,7 @@
         linux_layer {
             bindings = <
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
-    &none  &none  &none  &none  &none      &none  &kp F20  &kp F19  &kp LC(Z)  &kp RET
+    &none  &none  &none  &none  &none      &none  &kp F20  &kp F19  &none  &kp RET
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
                   &none  &none                &mo LYR_HELIX  &mo LYR_PAGE
             >;

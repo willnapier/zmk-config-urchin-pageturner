@@ -28,7 +28,7 @@ Fit switches on **E** and **I** (between the original N and O). Thumbs stay, **n
 |-----|-----|
 | **N** | F20 → `handy --toggle-transcription` (niri + Hammerspoon) |
 | **E** | F19 → `handy --cancel` |
-| **I** | Ctrl+Z (Mac: use **I+O** first so this becomes Cmd+Z) |
+| **I** | unbound (was Ctrl+Z, which suspends Helix / SIGKILL in Nushell) |
 | **O** | Enter |
 
 Totem `Mod+G` is unchanged. F13–F18 stay screenshot keys.
