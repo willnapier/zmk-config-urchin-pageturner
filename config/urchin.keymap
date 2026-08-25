@@ -18,8 +18,8 @@
  *   Outer  → momentary PAGE   (LEFT/RIGHT)
  *
  * Home-row N E I O (positions 16–19):
- *   Linux:  F20 / F19 / (I unbound) / F21 paste
- *   Mac:    F20 / F19 / Cmd+Z / F21 paste
+ *   Linux:  F20 / F19 / (I unbound) / Enter
+ *   Mac:    F20 / F19 / Cmd+Z / Enter
  *   Helix:  (trans toggle) / (trans cancel) / Esc u / Esc Space p
  *
  *    0  1  2  3  4 |  5  6  7  8  9
@@ -118,7 +118,7 @@
         linux_layer {
             bindings = <
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
-    &none  &none  &none  &none  &none      &none  &kp F20  &kp F19  &none  &kp F21
+    &none  &none  &none  &none  &none      &none  &kp F20  &kp F19  &none  &kp RET
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
                   &none  &none                &mo LYR_HELIX  &mo LYR_PAGE
             >;
@@ -127,7 +127,7 @@
         mac_layer {
             bindings = <
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
-    &none  &none  &none  &none  &none      &none  &kp F20  &kp F19  &kp LG(Z)  &kp F21
+    &none  &none  &none  &none  &none      &none  &kp F20  &kp F19  &kp LG(Z)  &kp RET
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
                   &none  &none                &mo LYR_HELIX  &mo LYR_PAGE
             >;

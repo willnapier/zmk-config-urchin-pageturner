@@ -31,7 +31,7 @@ Fit switches on **E** and **I** (between the original N and O). Thumbs stay, **n
 | **N** | F20 → start/stop recording (does **not** paste) |
 | **E** | F19 → cancel take |
 | **I** | unbound (Ctrl+Z suspended Helix) |
-| **O** | F21 → paste clipboard (Handy must be Paste method **None**) |
+| **O** | Enter |
 
 Totem `Mod+G` is unchanged. F13–F18 stay screenshot keys.
 
