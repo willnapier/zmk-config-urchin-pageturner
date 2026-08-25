@@ -16,6 +16,8 @@ Combos are adjacent home-row pairs, **from rest only** (`require-prior-idle-ms` 
 
 A Mac is one bond. Kindle-on-Mac is the PAGE layer, not a fourth profile.
 
+**Bootloader** (dead reset switch): from rest, press **N+E+I+O at once**, or **both thumbs**. `NICENANO` should appear over USB. Chord all four together — rolling N then E will hop to the iPhone slot instead.
+
 After a reboot the BT bond is restored and the layer is **Linux Handy** (N = F20 toggle on both computers). Kindle: hold outer thumb, or **N+E** for the iPhone layer. I+O still selects the Mac bond and Cmd+Z undo.
 
 ## Keys (Colemak positions on the right home row)

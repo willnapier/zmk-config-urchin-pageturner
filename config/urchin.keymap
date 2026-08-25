@@ -12,6 +12,8 @@
  *   N+E → iPhone  (profile 0, arrows)
  *   E+I → nimbini (profile 1, Linux Handy)
  *   I+O → Mac     (profile 2, Mac Handy)
+ *   N+E+I+O together → bootloader (reset-button bypass)
+ *   Both thumbs together → bootloader (no overlap with host pairs)
  *
  * Computer thumbs (no keycaps):
  *   Inner  → momentary HELIX  (Esc u / Esc Space p)
@@ -109,6 +111,23 @@
             require-prior-idle-ms = <1000>;
             key-positions = <18 19>;
             bindings = <&host_mac>;
+        };
+
+        // All four home-row keys. Must land together: N+E / E+I / I+O are
+        // subsets and will steal a host hop if you roll onto the four.
+        combo_bootloader_neio {
+            timeout-ms = <80>;
+            require-prior-idle-ms = <1000>;
+            key-positions = <16 17 18 19>;
+            bindings = <&bootloader>;
+        };
+
+        // Overlap-safe backup (reset switch is unreliable).
+        combo_bootloader_thumbs {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <1000>;
+            key-positions = <32 33>;
+            bindings = <&bootloader>;
         };
     };
 
