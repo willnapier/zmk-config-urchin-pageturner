@@ -11,6 +11,8 @@
  * Computer thumbs (no keycaps):
  *   Inner  → momentary HELIX  (Esc u / Esc Space p)
  *   Outer  → momentary PAGE   (LEFT/RIGHT for Mac Kindle)
+ * On the arrow layer, outer tap is &to Mac Handy (escape if E/I are dead).
+ * Arrow-layer E/I type the letters e/i so the switches can be tested in Notes.
  *
  * Home-row N E I O (positions 16–19):
  *   Linux:  Super+G / F19 / Ctrl+Z / Enter
@@ -113,9 +115,9 @@
         iphone_layer {
             bindings = <
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
-    &none  &none  &none  &none  &none      &none  &kp LEFT  &none  &none  &kp RIGHT
+    &none  &none  &none  &none  &none      &none  &kp LEFT  &kp E  &kp I  &kp RIGHT
     &none  &none  &none  &none  &none      &none  &none  &none  &none  &none
-                  &none  &none                &none  &none
+                  &none  &none                &none  &to LYR_MAC
             >;
         };
 

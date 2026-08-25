@@ -27,9 +27,12 @@ Fit switches on **E** and **I** (between the original N and O). Thumbs stay, **n
 | Key | HID |
 |-----|-----|
 | **N** | `LEFT` |
+| **E** | letter `e` (switch test; combos still consume N+E / E+I from rest) |
+| **I** | letter `i` (switch test; combos still consume E+I / I+O from rest) |
 | **O** | `RIGHT` |
+| **Outer thumb tap** | jump to Mac Handy layer **without** changing BLE profile |
 
-E, I, and both thumbs unbound. No hold required to read.
+No hold required to read. Outer-thumb tap is the escape if E/I are dead: Kindle stays on this layer; tap the bare outer stem, then N is Handy. On Mac Handy, hold that same stem for arrows.
 
 ### nimbini / Mac (base)
 
