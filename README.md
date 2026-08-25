@@ -38,7 +38,7 @@ No hold required to read. Outer-thumb tap is the escape if E/I are dead: Kindle 
 
 | Key | nimbini | Mac |
 |-----|---------|-----|
-| **N** | Super+G → `handy --toggle-transcription` | Option+Space (Handy in-app) |
+| **N** | Super+G → `handy --toggle-transcription` | Right-Cmd+G (Handy in-app; not Option+Space) |
 | **E** | F19 → `handy --cancel` (abort **before** paste) | F19 → Handy `--cancel` |
 | **I** | Ctrl+Z (undo paste) | Cmd+Z (undo paste) |
 | **O** | Enter | Enter |
