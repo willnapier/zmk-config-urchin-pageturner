@@ -16,7 +16,7 @@ Combos are adjacent home-row pairs, **from rest only** (`require-prior-idle-ms` 
 
 A Mac is one bond. Kindle-on-Mac is the PAGE layer, not a fourth profile.
 
-**Bootloader** (dead reset switch): **once**, not a double-tap. Plug USB in first, wait 1s with no keys, then **both thumbs within ~0.3s**, or **N+E+I+O together**. `NICENANO` only appears over USB. Rolling N then E hops Bluetooth instead.
+**Bootloader:** physical reset or RST–GND double-short. Key combos for this were pulled: they crashed the board on boot.
 
 After a reboot the BT bond is restored and the layer is **Linux Handy** (N = F20 toggle on both computers). Kindle: hold outer thumb, or **N+E** for the iPhone layer. I+O still selects the Mac bond and Cmd+Z undo.
 
@@ -28,10 +28,10 @@ Fit switches on **E** and **I** (between the original N and O). Thumbs stay, **n
 
 | Key | HID |
 |-----|-----|
-| **N** | F20 → `handy --toggle-transcription` (niri + Hammerspoon) |
-| **E** | F19 → `handy --cancel` |
-| **I** | unbound (was Ctrl+Z, which suspends Helix / SIGKILL in Nushell) |
-| **O** | Enter |
+| **N** | F20 → start/stop recording (does **not** paste) |
+| **E** | F19 → cancel take |
+| **I** | unbound (Ctrl+Z suspended Helix) |
+| **O** | F21 → paste clipboard (Handy must be Paste method **None**) |
 
 Totem `Mod+G` is unchanged. F13–F18 stay screenshot keys.
 
